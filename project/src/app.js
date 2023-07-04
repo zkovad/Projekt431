@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import Result from './result';
-import questionsData from './questionsData';
+import questionData from './questionsData';
+import styles from './app.module.css';
 
 const App = () => {
   const [answers, setAnswers] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleAnswer = (answer) => {
-    setAnswers([...answers, answer]);
+    setAnswers([...answers, { ...questionData[currentQuestionIndex], answer }]);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
   const renderContent = () => {
-    if (currentQuestionIndex < questionsData.length) {
+    if (currentQuestionIndex < questionData.length) {
+      const currentQuestion = questionData[currentQuestionIndex];
       return (
         <div>
           <h2>Question {currentQuestionIndex + 1}</h2>
-          <p>{questionsData[currentQuestionIndex].question}</p>
-          <button className = {styles.ja} onClick={() => handleAnswer(true)}>Ja</button>
-          <button className = {styles.nein} onClick={() => handleAnswer(false)}>Nein</button>
+          <p>{currentQuestion.question}</p>
+          <button className={styles.ja} onClick={() => handleAnswer(true)}>
+            Ja
+          </button>
+          <button className={styles.nein} onClick={() => handleAnswer(false)}>
+            Nein
+          </button>
         </div>
       );
     } else {

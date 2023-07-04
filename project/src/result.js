@@ -1,16 +1,16 @@
 import React from 'react';
 
+let categoryCounts = {
+  Peppig: 0,
+  Modern: 0,
+  Trendy: 0,
+  Jung: 0,
+  Kreativ: 0,
+  Unkompliziert: 0
+};
+
 const Result = ({ answers }) => {
   const calculateResult = () => {
-    let categoryCounts = {
-      Peppig: 0,
-      Modern: 0,
-      Trendy: 0,
-      Jung: 0,
-      Kreativ: 0,
-      Unkompliziert: 0
-    };
-
     answers.forEach((answer) => {
       const { category, answer: value } = answer;
       if (value) {
@@ -32,6 +32,8 @@ const Result = ({ answers }) => {
   };
 
   const result = calculateResult();
+  console.log(result);
+
 
   return (
     <div className="result">
